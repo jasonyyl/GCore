@@ -1,0 +1,6 @@
+E:\Work\Projects\VS2015\GitHub\GCore\GCore\bin\Debug\GCore.dll
+E:\Work\Projects\VS2015\GitHub\GCore\GCore\bin\Debug\GCore.pdb
+E:\Work\Projects\VS2015\GitHub\GCore\GCore\bin\Debug\UnityEditor.dll
+E:\Work\Projects\VS2015\GitHub\GCore\GCore\bin\Debug\UnityEngine.dll
+E:\Work\Projects\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.dll
+E:\Work\Projects\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.pdb
