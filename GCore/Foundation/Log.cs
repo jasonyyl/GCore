@@ -1,8 +1,9 @@
-﻿namespace GCore.Foundation
+﻿namespace ggc.Foundation
 {
     public static class Log
     {
-        static CLog m_Log = new CLog();
+        private static CLog m_Log = new CLog();
+
         public static CLog GetLog()
         {
             return m_Log;

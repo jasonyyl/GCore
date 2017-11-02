@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace GCore.Foundation
+namespace ggc.Foundation
 {
     public class CFileSystem
     {

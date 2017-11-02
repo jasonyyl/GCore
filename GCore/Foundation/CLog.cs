@@ -4,7 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace GCore.Foundation
+namespace ggc.Foundation
 {
     public sealed class CLog : IDisposable
     {

@@ -2,13 +2,10 @@
 using System.IO;
 using System.Text;
 
-namespace GCore.Foundation
+namespace ggc.Foundation
 {
     public sealed class CFile : IDisposable
     {
-        #region Fields
-
-        #region const
         public const int DEFAULT_FILE_VERSION = 0x3e8;
         public const int DEFAULT_HEADER_VERSION = 0x3e8;
         public const int FILE_BUF_LEN = 0x80;
@@ -18,8 +15,6 @@ namespace GCore.Foundation
         public const int INT_SIZE_IN_BYTE = 4;
         public const int LONG_LONG_SIZE_IN_BYTE = 8;
         public const int LONG_SIZE_IN_BYTE = 4;
-        #endregion
-
         private bool m_bDisposed;
         private byte[] m_byCryptSalt = s_byEmptyCryptSalt;
         private byte[] m_byDataForDecompressBuf;
@@ -55,14 +50,7 @@ namespace GCore.Foundation
         public const int SHORT_SIZE_IN_BYTE = 2;
         public const int TEXT_ENCODING_MASK = 0x700;
         public const int WIDE_CHAR_SIZE_IN_BYTE = 2;
-        #endregion
 
-        #region Private
-
-        ~CFile()
-        {
-            this.Dispose(false);
-        }
         private bool _Decrypt(byte[] theBuf, int iBufStartIndex, int iSize)
         {
             if (((this.m_byCryptSalt.Length == 0) || (theBuf == null)) || (iSize <= 0))
@@ -198,42 +186,42 @@ namespace GCore.Foundation
                 }
                 switch (num3)
                 {
-                    case 0:
-                    case 1:
-                        ch = Convert.ToChar(num);
-                        return num2;
+                case 0:
+                case 1:
+                    ch = Convert.ToChar(num);
+                    return num2;
 
-                    case 2:
+                case 2:
+                    {
+                        byte num5;
+                        int num6 = this.Read(out num5);
+                        if (num6 == 0)
                         {
-                            byte num5;
-                            int num6 = this.Read(out num5);
-                            if (num6 == 0)
-                            {
-                                ch = '\0';
-                                return 0;
-                            }
-                            ch = (char)(((0x1f & num) << 6) | (0x3f & num5));
-                            return (num2 + num6);
+                            ch = '\0';
+                            return 0;
                         }
-                    case 3:
+                        ch = (char)(((0x1f & num) << 6) | (0x3f & num5));
+                        return (num2 + num6);
+                    }
+                case 3:
+                    {
+                        byte num7;
+                        byte num9;
+                        int num8 = this.Read(out num7);
+                        if (num8 == 0)
                         {
-                            byte num7;
-                            byte num9;
-                            int num8 = this.Read(out num7);
-                            if (num8 == 0)
-                            {
-                                ch = '\0';
-                                return 0;
-                            }
-                            int num10 = this.Read(out num9);
-                            if (num10 == 0)
-                            {
-                                ch = '\0';
-                                return 0;
-                            }
-                            ch = (char)((((15 & num) << 12) | ((0x3f & num7) << 6)) | (0x3f & num9));
-                            return ((num2 + num8) + num10);
+                            ch = '\0';
+                            return 0;
                         }
+                        int num10 = this.Read(out num9);
+                        if (num10 == 0)
+                        {
+                            ch = '\0';
+                            return 0;
+                        }
+                        ch = (char)((((15 & num) << 12) | ((0x3f & num7) << 6)) | (0x3f & num9));
+                        return ((num2 + num8) + num10);
+                    }
                 }
                 ch = (char)0xfffd;
                 return 0;
@@ -430,9 +418,6 @@ namespace GCore.Foundation
                 }
             }
         }
-        #endregion
-
-        #region Public
 
         public void Close(bool bFlush = true)
         {
@@ -576,7 +561,10 @@ namespace GCore.Foundation
             this.m_nFileVersion = nFileVersion;
         }
 
-
+        ~CFile()
+        {
+            this.Dispose(false);
+        }
 
         public void Flush()
         {
@@ -722,13 +710,13 @@ namespace GCore.Foundation
             str = str.ToUpper();
             switch (str)
             {
-                case "TRUE":
-                    b = true;
-                    return num2;
+            case "TRUE":
+                b = true;
+                return num2;
 
-                case "FALSE":
-                    b = false;
-                    return num2;
+            case "FALSE":
+                b = false;
+                return num2;
             }
             b = Convert.ToBoolean(str);
             return num2;
@@ -1474,7 +1462,5 @@ namespace GCore.Foundation
             }
             return true;
         }
-
-        #endregion
     }
 }
