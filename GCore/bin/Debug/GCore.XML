@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GCore</name>
+    </assembly>
+    <members>
+        <member name="M:GCore.CTable.ExportBinaryTableFile(System.String,System.String,System.Int32)">
+            <summary>
+            导出表格二进制文件
+            </summary>
+            <param name="sTableFilename"></param>
+            <param name="sBinaryTableFilename"></param>
+            <param name="iKeyColumnIdx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GCore.CTable.LoadFile``2(System.String,GCore.CMapT{``0,``1}@,System.Int32,System.Boolean)">
+            <summary>
+            加载表格文件到到字典里
+            </summary>
+            <typeparam name="T1">字典Key类型</typeparam>
+            <typeparam name="T2">字典Value类型</typeparam>
+            <param name="sFilename">加载的表格文件路径</param>
+            <param name="mapTable">字典容器，用于加载表格文件</param>
+            <param name="iKeyColumnIdx"></param>
+            <param name="bSuppressFailMsg"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

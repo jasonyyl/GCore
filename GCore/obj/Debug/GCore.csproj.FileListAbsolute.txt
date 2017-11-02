@@ -5,3 +5,9 @@ E:\Work\Projects\VS2015\GitHub\GCore\GCore\bin\Debug\UnityEngine.dll
 E:\Work\Projects\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.dll
 E:\Work\Projects\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.pdb
 E:\Work\Projects\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.csprojResolveAssemblyReference.cache
+C:\Works\VS2015\GitHub\GCore\GCore\bin\Debug\GCore.dll
+C:\Works\VS2015\GitHub\GCore\GCore\bin\Debug\GCore.pdb
+C:\Works\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.dll
+C:\Works\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.pdb
+C:\Works\VS2015\GitHub\GCore\GCore\bin\Debug\GCore.XML
+C:\Works\VS2015\GitHub\GCore\GCore\obj\Debug\GCore.csprojResolveAssemblyReference.cache

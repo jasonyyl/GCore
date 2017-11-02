@@ -1,4 +1,4 @@
-﻿namespace ggc.Foundation
+﻿namespace GCore
 {
     public static class Log
     {

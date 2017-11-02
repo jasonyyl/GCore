@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ggc.Foundation
+namespace GCore
 {
     public sealed class CListT<T> : List<T>
     {

@@ -4,10 +4,11 @@ using System.IO;
 using System.Text;
 using System.Reflection;
 
-namespace ggc.Foundation
+namespace GCore
 {
     public sealed class CTable : IDisposable
     {
+        #region Fields
         private bool[] m_abSchemaAttrRead = new bool[11];
         private readonly string[] m_asSchemaAttr = new string[] { "RUNTIMETYPE:", "DATATYPE:", "PRIMARYKEY:", "NOTNULL:", "UNIQUE:", "INDEX:", "BINARY:", "UNSIGNED:", "ZEROFILL:", "AUTOINCREMENT:", "DEFAULT:" };
         private bool m_bDisposed;
@@ -22,6 +23,12 @@ namespace ggc.Foundation
         private string m_sFilename = "";
         private string m_sTextExtName = m_listTextExtSequences[0];
         private const int NUM_SCHEMA_ATTRS = 11;
+        #endregion
+
+        ~CTable()
+        {
+            this.Dispose(false);
+        }
 
         private bool _CheckDataRowType<T2>(T2 data, FieldInfo[] aAvailableFields, bool bRuntimeTypeChecking)
         {
@@ -2027,7 +2034,13 @@ namespace ggc.Foundation
                 this.m_bDisposed = true;
             }
         }
-
+        /// <summary>
+        /// 导出表格二进制文件
+        /// </summary>
+        /// <param name="sTableFilename"></param>
+        /// <param name="sBinaryTableFilename"></param>
+        /// <param name="iKeyColumnIdx"></param>
+        /// <returns></returns>
         public static bool ExportBinaryTableFile(string sTableFilename, string sBinaryTableFilename, int iKeyColumnIdx = 0)
         {
             CMapT<string, CRowData> mapTable = new CMapT<string, CRowData>();
@@ -2112,18 +2125,22 @@ namespace ggc.Foundation
             file.Close(true);
             file.Dispose();
             return true;
-        }
-
-        ~CTable()
-        {
-            this.Dispose(false);
-        }
+        }   
 
         public List<CColumnInfo> GetSchema()
         {
             return this.m_listColumns;
         }
-
+        /// <summary>
+        /// 加载表格文件到到字典里
+        /// </summary>
+        /// <typeparam name="T1">字典Key类型</typeparam>
+        /// <typeparam name="T2">字典Value类型</typeparam>
+        /// <param name="sFilename">加载的表格文件路径</param>
+        /// <param name="mapTable">字典容器，用于加载表格文件</param>
+        /// <param name="iKeyColumnIdx"></param>
+        /// <param name="bSuppressFailMsg"></param>
+        /// <returns></returns>
         public bool LoadFile<T1, T2>(string sFilename, ref CMapT<T1, T2> mapTable, int iKeyColumnIdx = 0, bool bSuppressFailMsg = false) where T2 : new()
         {
             bool flag = false;

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace ggc.Foundation
+namespace GCore
 {
     public sealed class CPath
     {
