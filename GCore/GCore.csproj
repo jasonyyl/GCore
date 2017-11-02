@@ -47,10 +47,13 @@
   <ItemGroup>
     <Compile Include="Foundation\CFile.cs" />
     <Compile Include="Foundation\CFileSystem.cs" />
-    <Compile Include="Foundation\CLog.cs" />
-    <Compile Include="Foundation\CPath.cs" />
     <Compile Include="Foundation\CListT.cs" />
+    <Compile Include="Foundation\CLog.cs" />
     <Compile Include="Foundation\CMapT.cs" />
+    <Compile Include="Foundation\CPath.cs" />
+    <Compile Include="Foundation\CStream.cs" />
+    <Compile Include="Foundation\CTable.cs" />
+    <Compile Include="Foundation\CTextParser.cs" />
     <Compile Include="Foundation\CTime.cs" />
     <Compile Include="Foundation\CTimer.cs" />
     <Compile Include="Foundation\Debug.cs" />
