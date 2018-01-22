@@ -2,7 +2,7 @@
 using System.Text;
 using System.Linq;
 
-namespace GCore
+namespace GCore.Foundation
 {
     public sealed class CStream
     {

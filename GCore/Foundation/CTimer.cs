@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GCore
+namespace GCore.Foundation
 {
     public sealed class CTimer : IDisposable
     {

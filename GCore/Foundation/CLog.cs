@@ -4,10 +4,44 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace GCore
+namespace GCore.Foundation
 {
     public sealed class CLog : IDisposable
     {
+        #region InternalClass
+        public delegate void CustomLogFunction(ELevel eLevel, string sTime, string sContent);
+
+        private class CStdOutLog
+        {
+            public bool m_bLogToFile;
+            public bool m_bOutputDebugString;
+            public bool m_bShowToConsole;
+            public ELevel m_eLevel;
+            public string m_sLogString;
+
+            public CStdOutLog(bool bShowToConsole, bool bLogToFile, bool bOutputDebugString, CLog.ELevel eLevel, string s)
+            {
+                this.m_sLogString = s;
+                this.m_eLevel = eLevel;
+                this.m_bShowToConsole = bShowToConsole;
+                this.m_bLogToFile = bLogToFile;
+                this.m_bOutputDebugString = bOutputDebugString;
+            }
+        }
+        #endregion
+
+        #region Enum
+        public enum ELevel
+        {
+            NONE = -1,
+            NORMAL = 0,
+            WARNING = 1,
+            ERROR = 2,
+            NUM_LEVELS = 3
+        }
+        #endregion
+
+        #region Fields
         private CFile[] m_aLogFile = new CFile[3];
         private bool m_bDisposed;
         private bool m_bLogTime = true;
@@ -29,9 +63,12 @@ namespace GCore
         private object m_LockObject = new object();
         private object m_LockObjectForStdOutLogList = new object();
         private string m_sLogFileExt = ".log";
-        private string m_sLogFilename = "default";
+        private string m_sLogFilename = "";
         private string m_sLogPath = "/logs/";
-        private static string[] s_sLogLevelTags = new string[] { "", "_wr", "_er" };
+        private static string[] s_sLogLevelTags = new string[] { "normal", "warning", "error" };
+        #endregion
+
+        #region Log
 
         public CLog()
         {
@@ -41,7 +78,10 @@ namespace GCore
                 this.m_sLogPath = this.m_sLogPath + "/logs/";
             }
         }
-
+        ~CLog()
+        {
+            this.Dispose(false);
+        }
         private void _CheckStdOutDisableFlag()
         {
             if ((this.m_bShowToConsole || this.m_bOutputDebugString) || this.m_bLogToFile)
@@ -201,7 +241,7 @@ namespace GCore
         private void _RunStdOutLog(object context)
         {
             CStdOutLog log;
-        Label_0000:
+            Label_0000:
             log = null;
             lock (this.m_LockObjectForStdOutLogList)
             {
@@ -269,12 +309,6 @@ namespace GCore
             }
         }
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
         private void Dispose(bool bDisposing)
         {
             if (!this.m_bDisposed)
@@ -282,6 +316,12 @@ namespace GCore
                 this._CloseLogFiles();
                 this.m_bDisposed = true;
             }
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public bool EnableMultithread()
@@ -334,11 +374,6 @@ namespace GCore
                 this.m_sLogFileExt = sFileExt;
                 this._CloseLogFiles();
             }
-        }
-
-        ~CLog()
-        {
-            this.Dispose(false);
         }
 
         public void Flush()
@@ -476,33 +511,6 @@ namespace GCore
             this._CheckStdOutDisableFlag();
         }
 
-        private class CStdOutLog
-        {
-            public bool m_bLogToFile;
-            public bool m_bOutputDebugString;
-            public bool m_bShowToConsole;
-            public CLog.ELevel m_eLevel;
-            public string m_sLogString;
-
-            public CStdOutLog(bool bShowToConsole, bool bLogToFile, bool bOutputDebugString, CLog.ELevel eLevel, string s)
-            {
-                this.m_sLogString = s;
-                this.m_eLevel = eLevel;
-                this.m_bShowToConsole = bShowToConsole;
-                this.m_bLogToFile = bLogToFile;
-                this.m_bOutputDebugString = bOutputDebugString;
-            }
-        }
-
-        public delegate void CustomLogFunction(CLog.ELevel eLevel, string sTime, string sContent);
-
-        public enum ELevel
-        {
-            ERROR = 2,
-            NONE = -1,
-            NORMAL = 0,
-            NUM_LEVELS = 3,
-            WARNING = 1
-        }
+        #endregion
     }
 }

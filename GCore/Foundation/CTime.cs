@@ -2,7 +2,7 @@
 using System.Text;
 using System.Globalization;
 
-namespace GCore
+namespace GCore.Foundation
 {
     public class CTime
     {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-namespace GCore
+namespace GCore.Foundation
 {
     public sealed class CTextParser : IDisposable
     {

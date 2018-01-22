@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace GCore
+namespace GCore.Foundation
 {
     public sealed class Debug
     {

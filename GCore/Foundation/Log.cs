@@ -1,4 +1,4 @@
-﻿namespace GCore
+﻿namespace GCore.Foundation
 {
     public static class Log
     {
@@ -162,6 +162,11 @@
         public static void ShowToConsole(bool b)
         {
             m_Log.ShowToConsole(b);
+        }
+
+        public static void Dispose()
+        {
+            m_Log.Dispose();
         }
     }
 }

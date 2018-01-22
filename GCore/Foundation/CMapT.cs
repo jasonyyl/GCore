@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GCore
+namespace GCore.Foundation
 {
     public sealed class CMapT<TKey, TValue> : Dictionary<TKey, TValue>
     {
